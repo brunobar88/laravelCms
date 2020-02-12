@@ -124,7 +124,7 @@ class UserController extends Controller
                 }
             }
 
-            if(!empty($user['password'])) {
+            if(!empty($data['password'])) {
                 if(strlen($data['password']) >= 4) {
                     if($data['password'] === $data['password_confirmation']) {
                         $user->password = Hash::make($data['password']);
