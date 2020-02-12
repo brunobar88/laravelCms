@@ -190,13 +190,17 @@ return [
             'can'         => 'edit-users'
         ],      
 
-        ['header' => 'account_settings'],
-
+        ['header' => 'configurações'],
         [
-            'text' => 'profile',
-            'url'  => 'painel/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text'       => 'Configurações Site',
+            'url'        => 'painel/settings',
+            'icon'       => 'fas fa-fw fa-file'
         ],
+        [
+            'text'       => 'Meu Perfil',
+            'url'        => 'painel/profile',
+            'icon'       => 'fas fa-fw fa-user'
+        ]
     ],
 
     /*
