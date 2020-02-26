@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Page;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,9 @@ class PagesController extends Controller
      */
     public function index()
     {
-        
+        $pages = Page::paginate(10);
+
+        return view('admin.pages.index', [ 'pages' => $pages ]);
     }
 
     /**
