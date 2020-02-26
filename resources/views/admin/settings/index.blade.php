@@ -46,12 +46,12 @@
                 </div>  <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Cor de fundo</label>
                     <div class="col-sm-10">
-                        <input type="color" value="{{ $settings['bgColor'] }}" name="bgColor" class="form-control">
+                        <input type="color" value="{{ $settings['bgColor'] }}" name="bgColor" class="form-control" style="width: 80px">
                     </div>
                 </div>  <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Cor do texto</label>
                     <div class="col-sm-10">
-                        <input type="color" value="{{ $settings['textColor'] }}" name="textColor" class="form-control">
+                        <input type="color" value="{{ $settings['textColor'] }}" name="textColor" class="form-control" style="width: 80px">
                     </div>
                 </div>
                 <div class="form-group row">
