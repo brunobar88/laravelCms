@@ -52,7 +52,7 @@ class PagesController extends Controller
         $validator = $this->validator($data);
 
         if($validator->fails()) {
-            return redirect(route('users.create'))->withErrors($validator)->withInput();
+            return redirect(route('pages.create'))->withErrors($validator)->withInput();
         }
 
         $page = new Page;
@@ -83,7 +83,13 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = Page::find($id);
+
+        if($page) {
+            return view('admin.pages.edit', ['page' => $page]);
+        }
+
+        return redirect(route('pages.index'));
     }
 
     /**
@@ -95,7 +101,38 @@ class PagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $page = Page::find($id);
+
+        if($page) {
+            $data = $request->only(['title', 'body']);
+
+            if($data['title'] !== $page->title) {
+                $data['slug'] = Str::slug($data['title'], '-');
+
+                $validator = $this->ValidadorEdit($data);
+
+            } else {
+                $validator = Validator::make([
+                    'title' => ['required', 'string', 'max:100'],
+                    'body' => ['string']
+                ]);
+            }
+
+            if($validator->fails()) {
+                return redirect(route('pages.edit', ['page' => $id]))->withErrors($validator)->withInput();
+            }
+
+            $page->title = $data['title'];
+            $page->body = $data['body'];
+
+            if(!empty($data['slug'])) {
+                $page->slug = $data['slug'];
+            }
+
+            $page->save();
+        }
+
+        return redirect(route('pages.index'));
     }
 
     /**
@@ -118,11 +155,12 @@ class PagesController extends Controller
         ]);
     }
 
-    public function ValidadorEdit(array $data)
+    private function ValidadorEdit(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'string', 'email', 'max:200'],
+            'title' => ['required', 'string', 'max:100'],
+            'body' => ['string'],
+            'slug' => ['required', 'string', 'max:100', 'unique:pages']
         ]);
     }
 }
