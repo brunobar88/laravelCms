@@ -112,7 +112,7 @@ class PagesController extends Controller
                 $validator = $this->ValidadorEdit($data);
 
             } else {
-                $validator = Validator::make([
+                $validator = Validator::make($data, [
                     'title' => ['required', 'string', 'max:100'],
                     'body' => ['string']
                 ]);
