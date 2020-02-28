@@ -143,7 +143,9 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Page::find($id)->delete(); 
+
+        return redirect(route('pages.index'));
     }
 
     private function validator(array $data)
