@@ -55,7 +55,10 @@
             toolbar: 'undo redo | formatselect | bold italic backcolor | aligncenter alignright alignleft alignjustify | table | link image | bulllist | numlist',
             content_css: [
                 '{{ asset('assets/css/content.css') }}',
-            ]
+            ],
+            images_upload_url: '{{ route('imageUpload') }}',
+            images_upload_credentials: true,
+            convert_url: false,
         });
     </script>
 @endsection
