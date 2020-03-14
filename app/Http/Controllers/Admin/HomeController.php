@@ -16,15 +16,17 @@ class HomeController extends Controller
 
     public function index()
     {
+        $arrayInfoChart = [];
+
         $dateLimit = date('Y-m-d H:i:s', strtotime('-5 minutes'));
         $listVisitors = Visitor::select('ip')->where('access_date', '>=', $dateLimit)->groupBy('ip')->get();
         $online = count($listVisitors);
 
-        $arrayInfoChart = [
-            'teste1' => 100,
-            'teste2' => 150,
-            'teste3' => 50,  
-        ];
+        $allVisits = Visitor::selectRaw('page, count(page) as qtPaginas')->groupBy('page')->get();
+
+        foreach ($allVisits as $visit) {
+            $arrayInfoChart[$visit['page']] = $visit['qtPaginas'];
+        }
 
         $pageLabel = json_encode( array_keys($arrayInfoChart) );
         $pageValues = json_encode( array_values($arrayInfoChart) );
