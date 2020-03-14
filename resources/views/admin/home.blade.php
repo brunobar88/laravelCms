@@ -1,5 +1,7 @@
 @extends('adminlte::page')
 
+@section('plugins.Chartjs', true)
+
 @section('title', 'painel')
 
 @section('content_header')
@@ -60,7 +62,7 @@
                     <h3 class="card-title">Paginas mais visitadas</h3>
                 </div>
                 <div class="card-body">
-                    ...
+                    <canvas id="canvaPie"></canvas>
                 </div>
             </div>
         </div>
@@ -75,4 +77,25 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        window.onload = function() {
+            let ctx = document.getElementById('canvaPie').getContext('2d');
+            window.canvaPie = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: {!! $pageValues !!},
+                        backgroundColor: '#0000FF',
+                    }],
+                    labels: {!! $pageLabels !!},
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        display: false,
+                    },
+                },
+            });
+        }
+    </script>
 @endsection
