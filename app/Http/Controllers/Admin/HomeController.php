@@ -17,10 +17,10 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $arrayInfoChart = [];
-        $dataSelect = $request->only(['datePeriod']);
+        $dataSelect = intval($request->input('datePeriod', 30));
         $currentDate = date('Y-m-d H:i:s');
-        if($dataSelect['datePeriod'] > 120) $dataSelect['datePeriod'] = 120;
-        $datePeriod = date('Y-m-d H:i:s', strtotime("-".intval($dataSelect['datePeriod'])." days"));
+        if($dataSelect > 120) $dataSelect = 120;
+        $datePeriod = date('Y-m-d H:i:s', strtotime("-".$dataSelect." days"));
 
         $visitsPeriodCount = Visitor::whereBetween('access_date', array($datePeriod, $currentDate))->count();
 
@@ -44,7 +44,7 @@ class HomeController extends Controller
             'userCount' => User::count(), 
             'pageLabels' => $pageLabel,
             'pageValues' =>  $pageValues,
-            'selected' => intVal($dataSelect['datePeriod'])
+            'selected' => $dataSelect
         ];
 
         return view('admin.home', $infos);
