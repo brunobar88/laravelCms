@@ -8,8 +8,8 @@ use App\User;
 use App\visitor;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
-  
+class HomeController extends Controller 
+{  
     public function __construct() {
         $this->middleware('auth');
     }
