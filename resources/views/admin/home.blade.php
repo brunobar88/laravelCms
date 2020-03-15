@@ -5,7 +5,23 @@
 @section('title', 'painel')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="col-md-6">
+            <form class="float-md-right" onchange="this.submit()" action="{{ route('admin') }}" method="get">
+                <label for="datePeriod">Periodo das visitas:</label>
+                <select name="datePeriod" id="datePeriod">
+                    <option {{$selected === 30 ? 'selected="selected"' : ''}} value="30">Ultimos 30 dias</option>
+                    <option {{$selected ===60 ? 'selected="selected"' : ''}} value="60">Ultimos 2 meses</option>
+                    <option {{$selected === 90 ? 'selected="selected"' : ''}} value="90">Ultimos 3 meses</option>
+                    <option {{$selected === 120 ? 'selected="selected"' : ''}} value="120">Ultimos 4 meses</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
 @endsection
 
 @section('content')
