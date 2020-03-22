@@ -76,8 +76,7 @@
                                 </a>
                             </div>
                             <p>
-                                Firmament morning sixth subdue darkness
-                                creeping gathered divide.
+                                {{ $front_config['subTitle'] }}
                             </p>
                             <div class="socail_links">
                                 <ul>
@@ -132,6 +131,7 @@
                     </div>
                 </div>
             </div>
+            <p style="margin-left: 100px; margin-top: 40px; color: #C7C7C7; font-size: 14px">Email para contato: {{ $front_config['email'] }}</p>
         </div>
         <div class="copy-right_text">
             <div class="container">
