@@ -50,8 +50,8 @@ class SettingController extends Controller
             'title'     => ['string', 'max:100'],
             'subTitle'  => ['string', 'max:100'],
             'email'     => ['string', 'email'],
-            'bgColor'   => ['string', 'regex:/#[A-Z0-9]{6}/'],
-            'testColor' => ['string', 'regex:/#[A-Z0-9]{6}/'],
+            'bgColor'   => ['string', 'regex:/#[A-Za-z0-9]{6}/'],
+            'textColor' => ['string', 'regex:/#[A-Za-z0-9]{6}/'],
         ]);
     }
 }
