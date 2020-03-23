@@ -19,3 +19,5 @@ Route::prefix('painel')->group(function(){
     Route::get('settings', 'Admin\SettingController@index')->name('settings');
     Route::put('settingsSave', 'Admin\SettingController@configSave')->name('settings.save');
 });
+
+Route::fallback('Site\PageController@index');
